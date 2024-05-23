@@ -3,7 +3,7 @@
 export default function Navbar() {
   return (
     <>
-      <nav className=" fixed w-full shadow-md z-20 top-0 start-0 border-b border-gray-200 dark:bg-slate-50">
+      <nav className=" nav-main">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-5 p-3">
           <a className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/svg/blogIcon.svg" alt="blog-header-icon" />

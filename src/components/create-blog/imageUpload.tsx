@@ -1,4 +1,4 @@
-import ImageUploadButton from "./imageUploadButton";
+import ImageUploadButton from "@/components/create-blog/imageUploadButton";
 
 interface ImageUploadProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

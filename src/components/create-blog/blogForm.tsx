@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import { useMutation } from "convex/react";
 import { BlogFormData } from "@/module/blog-form-schema";
-import ImageUpload from "./imageUpload";
+import ImageUpload from "@/components/create-blog/imageUpload";
+import LabeInput from "@/components/ui/label-input";
+import { api } from "@convex/_generated/api";
 
 export default function CreateBlog() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -46,67 +47,38 @@ export default function CreateBlog() {
   };
 
   return (
-    <div className="blog-form-container  w-full    overflow-auto  backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
+    <div className="main-container">
       <h2 className="text-2xl font-bold pb-5 text-center text-white">
         Create Blog
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium" htmlFor="title">
-            Title :
-          </label>
-          <input
-            type="text"
-            id="title"
-            className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-            placeholder="Type here..."
-            {...register("title", { required: "*Title is required" })}
-          />
-          {errors.title && (
-            <p className="text-red-600 text-sm py-1.5">
-              {errors.title.message as string}
-            </p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium" htmlFor="content">
-            Content :
-          </label>
-          <textarea
-            id="content"
-            className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-            placeholder="Type here.."
-            {...register("content", { required: "*Content is required" })}
-          ></textarea>
-          {errors.content && (
-            <p className="text-red-600 text-sm py-1.5">
-              {errors.content.message as string}
-            </p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label htmlFor="author" className="block mb-2 text-sm font-medium">
-            Author :
-          </label>
-          <input
-            type="text"
-            id="author"
-            className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
-            placeholder="Type here..."
-            {...register("author", { required: "*Author is required" })}
-          />
-          {errors.author && (
-            <p className="text-red-600 text-sm py-1.5">
-              {errors.author.message as string}
-            </p>
-          )}
-        </div>
+        <LabeInput
+          error={errors.title}
+          type="text"
+          id="title"
+          label="Title :"
+          placeholder="Type here..."
+          register={register("title", { required: "*Title is required" })}
+        />
+        <LabeInput
+          error={errors.content}
+          type="textarea"
+          label="Content :"
+          register={register("content", { required: "*Content is required" })}
+          placeholder="Type here34"
+          id="content"
+        />
+        <LabeInput
+          error={errors.author}
+          type="text"
+          id="author"
+          label="Author :"
+          placeholder="Type here..."
+          register={register("author", { required: "*Author is required" })}
+        />
         <ImageUpload onChange={handleImageChange} imagePreview={imagePreview} />
         <div className="flex items-center justify-center mb-4">
-          <button
-            type="submit"
-            className="text-white border-white border-2 bg-inherit  focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 px-5 w-full sm:w-auto"
-          >
+          <button type="submit" className="button-primary">
             {loading ? "Uploading..." : "Upload Blog"}
           </button>
         </div>

@@ -1,8 +1,10 @@
 "use client";
+
 import { useQuery } from "convex/react";
-import { api } from "../../../convex/_generated/api";
-import Loader from "../loader/loader";
+
 import { BlogData } from "@/module/blog-data-schema";
+import { api } from "@convex/_generated/api";
+import Loader from "@/components/loader/loader";
 
 export default function BlogCard() {
   const blogData = useQuery(api.createPost.getBlogData);
@@ -28,13 +30,9 @@ export default function BlogCard() {
             </div>
             <div className="p-5">
               <div className="h-16">
-                <h5 className="max-h-14 capitalize blog-title mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black ">
-                  {item.title}
-                </h5>
+                <h1 className="blog-main-heading ">{item.title}</h1>
               </div>
-              <p className=" content-container max-h-36 h-36  mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {item.content}
-              </p>
+              <p className="blog-content">{item.content}</p>
               <div className="border-t-2 p-1 max-h-10 ">
                 <div className="author-label flex text-slate-600 gap-3">
                   <h4 className="w-1/5">Author :</h4>
