@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { BlogFormData } from "@/module/blog-form-schema";
+import ImageUpload from "./imageUpload";
 
 export default function CreateBlog() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -100,56 +101,7 @@ export default function CreateBlog() {
             </p>
           )}
         </div>
-        <div className="mb-4">
-          <label htmlFor="image" className="block mb-2 text-sm font-medium">
-            Image :
-          </label>
-
-          <div className="flex items-center justify-center w-full">
-            <label
-              htmlFor="image"
-              className="flex h-32 flex-col items-center justify-center w-full  border-2 border-gray-50 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-white dark:bg-white hover:bg-white dark:border-gray-400 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-            >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg
-                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 16"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                  />
-                </svg>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span className="font-semibold">Click to upload</span>
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG, JPG or GIF
-                </p>
-              </div>
-              <input
-                id="image"
-                type="file"
-                onChange={handleImageChange}
-                className="hidden"
-              />
-            </label>
-          </div>
-          {imagePreview && (
-            <img
-              src={imagePreview}
-              alt="Preview"
-              className="mt-4 rounded-lg"
-              style={{ maxWidth: "100%", maxHeight: "146px", width: "100%" }}
-            />
-          )}
-        </div>
+        <ImageUpload onChange={handleImageChange} imagePreview={imagePreview} />
         <div className="flex items-center justify-center mb-4">
           <button
             type="submit"
